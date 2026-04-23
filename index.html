@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="ru" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мэрия города Манас</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+  body { font-family: 'Manrope', sans-serif; }
+  h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+  .hero-gradient {
+    background: linear-gradient(135deg, rgba(15, 40, 95, 0.85) 0%, rgba(30, 80, 160, 0.65) 100%);
+  }
+  .nav-link { position: relative; transition: color 0.25s ease; }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px;
+    background: #1e50a0; transition: width 0.3s ease;
+  }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  .card-hover { transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease; }
+  .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -15px rgba(15,40,95,0.25); }
+  .section-hidden { display: none; }
+  .fade-in { animation: fadeIn 0.5s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .divider-line {
+    background: linear-gradient(90deg, transparent, #1e50a0, transparent);
+    height: 1px;
+  }
+  .seal-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 20% 50%, rgba(30,80,160,0.08) 0%, transparent 40%),
+                      radial-gradient(circle at 80% 30%, rgba(30,80,160,0.05) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .toast-enter { animation: toastIn 0.4s cubic-bezier(.2,.8,.2,1); }
+  @keyframes toastIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .scroll-smooth { scroll-behavior: smooth; }
+  .mobile-menu-enter { animation: slideDown 0.3s ease; }
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+  .img-fallback { background: linear-gradient(135deg, #e8eef7 0%, #d0ddf0 100%); }
+  html { scroll-behavior: smooth; }
+</style>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full w-full bg-white text-slate-800" style="background-color: #ffffff;">
+  <div class="h-full w-full overflow-auto"><!-- TOP BAR -->
+   <div id="top-bar" class="w-full text-white text-xs" style="background-color: #0f285f;">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2">
+     <div class="flex items-center gap-4"><span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3 h-3"></i> г. Манас, Джалал-Абадская область, Кыргызская Республика</span> <span class="hidden md:flex items-center gap-1.5"><i data-lucide="clock" class="w-3 h-3"></i> Пн-Пт: 08:30 — 17:30</span>
+     </div>
+     <div class="flex items-center gap-4"><a href="tel:+996-000-000000" class="flex items-center gap-1.5 hover:text-blue-200 transition"><i data-lucide="phone" class="w-3 h-3"></i> +996 (777) 05-05-07</a> <span class="hidden sm:inline">KG | РУ</span>
+     </div>
+    </div>
+   </div><!-- HEADER / NAV -->
+   <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"><a href="#home" data-section="home" class="flex items-center gap-3 nav-link">
+      <div class="w-14 h-14 rounded-full flex items-center justify-center shrink-0 overflow-hidden border-2" style="border-color: #0f285f;"><img src="manasmerrr.jpeg" alt="Герб Кыргызстана" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-white font-bold serif\' style=\'background-color:#0f285f\' >М</div>';">
+      </div>
+      <div>
+       <div class="serif text-lg md:text-xl font-bold leading-none" id="header-city-name" style="color: #0f285f;">
+        Мэрия г. Манас
+       </div>
+       <div class="text-xs text-slate-500 mt-1">
+        Официальный сайт
+       </div>
+      </div></a>
+     <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-700"><a href="#home" class="nav-link active" data-section="home">Главная</a> <a href="#history" class="nav-link" data-section="history">История</a> <a href="#leadership" class="nav-link" data-section="leadership">Руководство</a> <a href="#press" class="nav-link" data-section="press">Пресс-служба</a> <a href="#stories" class="nav-link" data-section="stories">Истории</a> <a href="#jobs" class="nav-link" data-section="jobs">Вакансии</a> <a href="#contacts" class="nav-link" data-section="contacts">Контакты</a> <a href="#appeal" class="px-4 py-2 rounded-full text-white font-semibold transition hover:opacity-90" style="background-color: #1e50a0;">Обращение</a>
+     </nav><button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-slate-100" aria-label="Меню"> <i data-lucide="menu" class="w-6 h-6"></i> </button>
+    </div>
+    <div id="mobile-menu" class="lg:hidden hidden border-t border-slate-100 bg-white">
+     <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-3 text-sm font-medium text-slate-700"><a href="#home" class="mobile-nav-link py-2" data-section="home">Главная</a> <a href="#history" class="mobile-nav-link py-2" data-section="history">История города</a> <a href="#leadership" class="mobile-nav-link py-2" data-section="leadership">Руководство</a> <a href="#press" class="mobile-nav-link py-2" data-section="press">Пресс-служба</a> <a href="#stories" class="mobile-nav-link py-2" data-section="stories">Городские истории</a> <a href="#jobs" class="mobile-nav-link py-2" data-section="jobs">Вакансии</a> <a href="#contacts" class="mobile-nav-link py-2" data-section="contacts">Контакты</a> <a href="#appeal" class="mobile-nav-link py-2 font-semibold" style="color: #1e50a0;">Обращение к мэру</a>
+     </nav>
+    </div>
+   </header>
+   <main id="main-content"><!-- =================== HOME SECTION =================== -->
+    <section id="home-section" class="fade-in"><!-- HERO BANNER -->
+     <div class="relative w-full h-[520px] md:h-[600px] overflow-hidden"><img src="https://cdn-1.aki.kg/cdn-st-0/qgi/3/3544195.8cb51c847b9e593f3cd1d46377ec7f7e.jpg" alt="Здание мэрии" loading="lazy" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.classList.add('img-fallback');">
+      <div class="absolute inset-0 hero-gradient"></div>
+      <div class="relative z-10 max-w-7xl mx-auto px-4 h-full flex flex-col justify-center text-white">
+       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 w-fit mb-6"><span class="w-2 h-2 rounded-full bg-white animate-pulse"></span> <span class="text-xs uppercase tracking-[0.2em] font-semibold">Официальный портал</span>
+       </div>
+       <h1 id="hero-title" class="serif text-4xl md:text-6xl font-bold max-w-3xl leading-tight">Официальный сайт мэрии города Манас</h1>
+       <p id="hero-subtitle" class="mt-6 text-lg md:text-xl text-blue-50 max-w-2xl">Мэрия работает для каждого жителя: открытость, развитие, забота о городе.</p>
+       <div class="mt-10 flex flex-wrap gap-4"><a href="#appeal" data-nav="appeal" class="inline-flex items-center gap-2 px-6 py-3 bg-white font-semibold rounded-full transition hover:shadow-xl" style="color: #0f285f;"> <i data-lucide="mail" class="w-4 h-4"></i> Обратиться к мэру </a> <a href="#services" class="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition"> <i data-lucide="layout-grid" class="w-4 h-4"></i> Муниципальные услуги </a>
+       </div>
+      </div>
+     </div><!-- QUICK STATS -->
+     <div class="max-w-7xl mx-auto px-4 -mt-16 relative z-20">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-8">
+       <div class="text-center">
+        <div class="serif text-3xl md:text-4xl font-bold" style="color: #0f285f;">
+         2025
+        </div>
+        <div class="text-xs md:text-sm text-slate-500 mt-1 uppercase tracking-wider">
+         Год переименования
+        </div>
+       </div>
+       <div class="text-center border-l border-slate-100">
+        <div class="serif text-3xl md:text-4xl font-bold" style="color: #0f285f;">
+         184 400+
+        </div>
+        <div class="text-xs md:text-sm text-slate-500 mt-1 uppercase tracking-wider">
+         Жителей
+        </div>
+       </div>
+       <div class="text-center md:border-l border-slate-100">
+        <div class="serif text-3xl md:text-4xl font-bold" style="color: #0f285f;">
+         12
+        </div>
+        <div class="text-xs md:text-sm text-slate-500 mt-1 uppercase tracking-wider">
+         Отделов
+        </div>
+       </div>
+       <div class="text-center border-l border-slate-100">
+        <div class="serif text-3xl md:text-4xl font-bold" style="color: #0f285f;">
+         31
+        </div>
+        <div class="text-xs md:text-sm text-slate-500 mt-1 uppercase tracking-wider">
+         Депутатов
+        </div>
+       </div>
+      </div>
+     </div><!-- NEWS -->
+     <div class="max-w-7xl mx-auto px-4 py-20">
+      <div class="flex items-end justify-between mb-10">
+       <div>
+        <div class="text-xs uppercase tracking-[0.25em] font-semibold mb-2" style="color: #1e50a0;">
+         Актуальное
+        </div>
+        <h2 class="serif text-3xl md:text-4xl font-bold" style="color: #0f285f;">Новости города</h2>
+       </div><a href="#press" data-nav="press" class="hidden md:flex items-center gap-2 text-sm font-semibold transition hover:gap-3" style="color: #1e50a0;">Все новости <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- News 1 -->
+       <article class="card-hover bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm cursor-pointer">
+        <div class="relative h-56 overflow-hidden"><img src="https://haber.manas.edu.kg/uploads/7764_1..jpg" alt="Новость" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';"> <span class="absolute top-4 left-4 px-3 py-1 bg-white text-xs font-semibold rounded-full" style="color: #0f285f;">Образование</span>
+        </div>
+        <div class="p-6">
+         <div class="text-xs text-slate-400 mb-2 flex items-center gap-2">
+          <i data-lucide="calendar" class="w-3 h-3"></i> 15 апреля 2026
+         </div>
+         <h3 class="serif text-xl font-bold mb-2" style="color: #0f285f;">Будущие создатели технологий встретились на форуме Manas BM</h3>
+         <p class="text-sm text-slate-600 leading-relaxed">Форум «Manas BM», организованный кафедрой компьютерной инженерии инженерного факультета Кыргызско-Турецкого университета «Манас», объединил студентов, преподавателей и молодых предпринимателей. Мероприятие прошло в конференц-зале ректората. В центре внимания оказались такие темы, как искусственный интеллект, кибербезопасность, программная инженерия и инновационные студенческие проекты. В рамках форума также состоялось награждение победителей конкурса «Manas BM Hackathon 2026».</p>
+         <div class="mt-4 text-sm font-semibold flex items-center gap-1" style="color: #1e50a0;">
+          Читать далее <i data-lucide="chevron-right" class="w-4 h-4"></i>
+         </div>
+        </div>
+       </article><!-- News 2 -->
+       <article class="card-hover bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm cursor-pointer">
+        <div class="relative h-56 overflow-hidden"><img src="https://sputnik.kg/img/07ea/03/18/1100406698_0:160:3072:1888_1920x0_80_0_0_fe731905892e67cf9662ee486ed754a6.jpg.webp" alt="Новость" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';"> <span class="absolute top-4 left-4 px-3 py-1 bg-white text-xs font-semibold rounded-full" style="color: #0f285f;">Сад Памяти</span>
+        </div>
+        <div class="p-6">
+         <div class="text-xs text-slate-400 mb-2 flex items-center gap-2">
+          <i data-lucide="calendar" class="w-3 h-3"></i> 11 марта 2026 года
+         </div>
+         <h3 class="serif text-xl font-bold mb-2" style="color: #0f285f;">В Манасе стартовала международная акция "Сад памяти"</h3>
+         <p class="text-sm text-slate-600 leading-relaxed">БИШКЕК, 24 мар — Sputnik. В городе Манасе в Парке дружбы регионов Кыргызстана и России дан старт международной акции "Сад памяти" по высадке саженцев, приуроченной к 81-й годовщине Победы в Великой Отечественной войне.</p>
+         <div class="mt-4 text-sm font-semibold flex items-center gap-1" style="color: #1e50a0;">
+          Читать далее <i data-lucide="chevron-right" class="w-4 h-4"></i>
+         </div>
+        </div>
+       </article><!-- News 3 -->
+       <article class="card-hover bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm cursor-pointer">
+        <div class="relative h-56 overflow-hidden"><img src="https://sputnik.kg/img/104641/10/1046411045_0:301:3067:2026_1920x0_80_0_0_f5fb4861c8d4cd7feec275d596a1ad58.jpg.webp" alt="Новость" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';"> <span class="absolute top-4 left-4 px-3 py-1 bg-white text-xs font-semibold rounded-full" style="color: #0f285f;">Нарушение закона</span>
+        </div>
+        <div class="p-6">
+         <div class="text-xs text-slate-400 mb-2 flex items-center gap-2">
+          <i data-lucide="calendar" class="w-3 h-3"></i> 7 апреля 2026 года
+         </div>
+         <h3 class="serif text-xl font-bold mb-2" style="color: #0f285f;">В Манасе женщина организовала "черный ломбард" у себя дома — ее задержали</h3>
+         <p class="text-sm text-slate-600 leading-relaxed">В ГКНБ сообщили, что А. Э. С. выдавала займы под более 150% годовых. В залог ей оставляли авто, недвижимость и ювелирные изделия. Гражданин Ш. К. У. занял у женщины 1 млн сомов и ежемесячно выплачивал в виде процентов 150 тыс.</p>
+         <div class="mt-4 text-sm font-semibold flex items-center gap-1" style="color: #1e50a0;">
+          Читать далее <i data-lucide="chevron-right" class="w-4 h-4"></i>
+         </div>
+        </div>
+       </article>
+      </div>
+     </div><!-- SERVICES & DOCS -->
+     <div class="bg-slate-50 py-20">
+      <div class="max-w-7xl mx-auto px-4">
+       <div class="text-center mb-14">
+        <div class="text-xs uppercase tracking-[0.25em] font-semibold mb-2" style="color: #1e50a0;">
+         Для жителей
+        </div>
+        <h2 id="services" class="serif text-3xl md:text-4xl font-bold" style="color: #0f285f;">Сервисы и муниципальные услуги</h2>
+       </div>
+       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"><button onclick="showToast('Переход к оформлению прописки','info')" class="card-hover bg-white p-6 rounded-2xl border border-slate-100 text-center group">
+         <div class="w-14 h-14 mx-auto mb-4 rounded-2xl flex items-center justify-center transition group-hover:scale-110" style="background-color: #e8eef7;">
+          <i data-lucide="home" class="w-6 h-6" style="color: #0f285f;"></i>
+         </div>
+         <div class="text-sm font-semibold text-slate-700">
+          Прописка
+         </div></button> <button onclick="showToast('Регистрация бизнеса','info')" class="card-hover bg-white p-6 rounded-2xl border border-slate-100 text-center group">
+         <div class="w-14 h-14 mx-auto mb-4 rounded-2xl flex items-center justify-center transition group-hover:scale-110" style="background-color: #e8eef7;">
+          <i data-lucide="briefcase" class="w-6 h-6" style="color: #0f285f;"></i>
+         </div>
+         <div class="text-sm font-semibold text-slate-700">
+          Бизнес
+         </div></button> <button onclick="showToast('Налоги и платежи','info')" class="card-hover bg-white p-6 rounded-2xl border border-slate-100 text-center group">
+         <div class="w-14 h-14 mx-auto mb-4 rounded-2xl flex items-center justify-center transition group-hover:scale-110" style="background-color: #e8eef7;">
+          <i data-lucide="wallet" class="w-6 h-6" style="color: #0f285f;"></i>
+         </div>
+         <div class="text-sm font-semibold text-slate-700">
+          Налоги
+         </div></button> <button onclick="showToast('Социальная защита','info')" class="card-hover bg-white p-6 rounded-2xl border border-slate-100 text-center group">
+         <div class="w-14 h-14 mx-auto mb-4 rounded-2xl flex items-center justify-center transition group-hover:scale-110" style="background-color: #e8eef7;">
+          <i data-lucide="heart-handshake" class="w-6 h-6" style="color: #0f285f;"></i>
+         </div>
+         <div class="text-sm font-semibold text-slate-700">
+          Соц. помощь
+         </div></button> <button onclick="showToast('Транспорт и дороги','info')" class="card-hover bg-white p-6 rounded-2xl border border-slate-100 text-center group">
+         <div class="w-14 h-14 mx-auto mb-4 rounded-2xl flex items-center justify-center transition group-hover:scale-110" style="background-color: #e8eef7;">
+          <i data-lucide="bus" class="w-6 h-6" style="color: #0f285f;"></i>
+         </div>
+         <div class="text-sm font-semibold text-slate-700">
+          Транспорт
+         </div></button> <button onclick="showToast('Земельные вопросы','info')" class="card-hover bg-white p-6 rounded-2xl border border-slate-100 text-center group">
+         <div class="w-14 h-14 mx-auto mb-4 rounded-2xl flex items-center justify-center transition group-hover:scale-110" style="background-color: #e8eef7;">
+          <i data-lucide="map" class="w-6 h-6" style="color: #0f285f;"></i>
+         </div>
+         <div class="text-sm font-semibold text-slate-700">
+          Земля
+         </div></button>
+       </div><!-- Documents -->
+       <div class="mt-16 grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl p-8 border border-slate-100">
+         <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background-color: #0f285f;">
+           <i data-lucide="file-text" class="w-5 h-5 text-white"></i>
+          </div>
+          <h3 class="serif text-2xl font-bold" style="color: #0f285f;">Документы</h3>
+         </div>
+         <ul class="space-y-3">
+          <li class="flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 transition cursor-pointer" onclick="showToast('Загрузка документа','info')"><span class="text-sm text-slate-700">Устав города Манас</span> <i data-lucide="download" class="w-4 h-4" style="color: #1e50a0;"></i></li>
+          <li class="flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 transition cursor-pointer" onclick="showToast('Загрузка документа','info')"><span class="text-sm text-slate-700">Положение о мэрии</span> <i data-lucide="download" class="w-4 h-4" style="color: #1e50a0;"></i></li>
+          <li class="flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 transition cursor-pointer" onclick="showToast('Загрузка документа','info')"><span class="text-sm text-slate-700">Генеральный план развития</span> <i data-lucide="download" class="w-4 h-4" style="color: #1e50a0;"></i></li>
+          <li class="flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 transition cursor-pointer" onclick="showToast('Загрузка документа','info')"><span class="text-sm text-slate-700">Регламент кенеша</span> <i data-lucide="download" class="w-4 h-4" style="color: #1e50a0;"></i></li>
+         </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-8 border border-slate-100">
+         <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background-color: #0f285f;">
+           <i data-lucide="bar-chart-3" class="w-5 h-5 text-white"></i>
+          </div>
+          <h3 class="serif text-2xl font-bold" style="color: #0f285f;">Отчёты</h3>
+         </div>
+         <ul class="space-y-3">
+          <li class="flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 transition cursor-pointer" onclick="showToast('Загрузка отчёта','info')"><span class="text-sm text-slate-700">Отчёт мэра за 2024 год</span> <i data-lucide="file-down" class="w-4 h-4" style="color: #1e50a0;"></i></li>
+          <li class="flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 transition cursor-pointer" onclick="showToast('Загрузка отчёта','info')"><span class="text-sm text-slate-700">Бюджет города 2025</span> <i data-lucide="file-down" class="w-4 h-4" style="color: #1e50a0;"></i></li>
+          <li class="flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 transition cursor-pointer" onclick="showToast('Загрузка отчёта','info')"><span class="text-sm text-slate-700">Социально-экономическое развитие</span> <i data-lucide="file-down" class="w-4 h-4" style="color: #1e50a0;"></i></li>
+          <li class="flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 transition cursor-pointer" onclick="showToast('Загрузка отчёта','info')"><span class="text-sm text-slate-700">Итоги работы отделов</span> <i data-lucide="file-down" class="w-4 h-4" style="color: #1e50a0;"></i></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div><!-- INFOGRAPHICS -->
+     <div class="max-w-7xl mx-auto px-4 py-20">
+      <div class="text-center mb-14">
+       <div class="text-xs uppercase tracking-[0.25em] font-semibold mb-2" style="color: #1e50a0;">
+        Данные
+       </div>
+       <h2 class="serif text-3xl md:text-4xl font-bold" style="color: #0f285f;">Инфографика города</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+       <div class="relative p-8 rounded-2xl overflow-hidden" style="background-color: #0f285f;">
+        <div class="text-white/60 text-sm uppercase tracking-widest">
+         Бюджет 2026
+        </div>
+        <div class="serif text-5xl font-bold text-white mt-4">
+         1,5 млрд
+        </div>
+        <div class="text-blue-200 text-sm mt-2">
+         сомов
+        </div>
+        <div class="mt-6 space-y-2 text-sm text-blue-100">
+         <div class="flex justify-between">
+          <span>Образование</span><span class="font-semibold">38%</span>
+         </div>
+         <div class="w-full h-1.5 bg-white/10 rounded-full">
+          <div class="h-full rounded-full bg-white" style="width:38%"></div>
+         </div>
+         <div class="flex justify-between mt-3">
+          <span>Инфраструктура</span><span class="font-semibold">27%</span>
+         </div>
+         <div class="w-full h-1.5 bg-white/10 rounded-full">
+          <div class="h-full rounded-full bg-white" style="width:27%"></div>
+         </div>
+         <div class="flex justify-between mt-3">
+          <span>Социальная сфера</span><span class="font-semibold">20%</span>
+         </div>
+         <div class="w-full h-1.5 bg-white/10 rounded-full">
+          <div class="h-full rounded-full bg-white" style="width:20%"></div>
+         </div>
+        </div>
+       </div>
+       <div class="p-8 rounded-2xl border-2" style="border-color: #e8eef7;">
+        <div class="text-xs uppercase tracking-widest text-slate-500">
+         Население
+        </div>
+        <div class="serif text-5xl font-bold mt-4" style="color: #0f285f;">
+         184 400
+        </div>
+        <div class="text-sm text-slate-500 mt-2">
+         жителей
+        </div>
+        <div class="mt-6 space-y-3">
+         <div class="flex items-center gap-3">
+          <div class="w-2 h-10 rounded-full" style="background-color: #1e50a0;"></div>
+          <div>
+           <div class="text-sm font-semibold text-slate-700">
+            85 378 женщин
+           </div>
+           <div class="text-xs text-slate-500">
+            47.3%
+           </div>
+          </div>
+         </div>
+         <div class="flex items-center gap-3">
+          <div class="w-2 h-10 rounded-full" style="background-color: #3b7dd8;"></div>
+          <div>
+           <div class="text-sm font-semibold text-slate-700">
+            99 022 мужчин
+           </div>
+           <div class="text-xs text-slate-500">
+            53.7%
+           </div>
+          </div>
+         </div>
+         <div class="flex items-center gap-3">
+          
+          <div>
+           
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="p-8 rounded-2xl" style="background-color: #e8eef7;">
+        <div class="text-xs uppercase tracking-widest" style="color: #0f285f;">
+         Проекты 2026
+        </div>
+        <div class="serif text-5xl font-bold mt-4" style="color: #0f285f;">
+         24
+        </div>
+        <div class="text-sm mt-2" style="color: #1e50a0;">
+         активных проекта
+        </div>
+        <div class="mt-6 grid grid-cols-3 gap-3">
+         <div class="bg-white p-3 rounded-lg text-center">
+          <div class="serif text-xl font-bold" style="color: #0f285f;">
+           12
+          </div>
+          <div class="text-xs text-slate-500 mt-1">
+           Завершено
+          </div>
+         </div>
+         <div class="bg-white p-3 rounded-lg text-center">
+          <div class="serif text-xl font-bold" style="color: #0f285f;">
+           8
+          </div>
+          <div class="text-xs text-slate-500 mt-1">
+           В работе
+          </div>
+         </div>
+         <div class="bg-white p-3 rounded-lg text-center">
+          <div class="serif text-xl font-bold" style="color: #0f285f;">
+           4
+          </div>
+          <div class="text-xs text-slate-500 mt-1">
+           Планы
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- PHOTO REPORT -->
+     <div class="bg-slate-50 py-20">
+      <div class="max-w-7xl mx-auto px-4">
+       <div class="text-center mb-14">
+        <div class="text-xs uppercase tracking-[0.25em] font-semibold mb-2" style="color: #1e50a0;">
+         Галерея
+        </div>
+        <h2 class="serif text-3xl md:text-4xl font-bold" style="color: #0f285f;">Фоторепортаж</h2>
+       </div>
+       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+        <div class="relative aspect-square rounded-xl overflow-hidden card-hover group cursor-pointer"><img src="https://ru.kabar.kg/media/images/WhatsApp_Image_fFjw8Et.max-25.max-1920x1080.format-webp.webp" alt="Город" loading="lazy" class="w-full h-full object-cover transition group-hover:scale-110 duration-700" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+          <div class="text-white text-sm font-semibold">
+           Обновленная Арка
+          </div>
+         </div>
+        </div>
+        <div class="relative aspect-square rounded-xl overflow-hidden card-hover group cursor-pointer"><img src="https://cdn-1.aki.kg/cdn-st-0/qgh/Q/3473586.f10823b02b740e3735f98511fcd5783b.jpg" alt="Природа" loading="lazy" class="w-full h-full object-cover transition group-hover:scale-110 duration-700" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+          <div class="text-white text-sm font-semibold">
+           Переименованный Манас
+          </div>
+         </div>
+        </div>
+        <div class="relative aspect-square rounded-xl overflow-hidden card-hover group cursor-pointer"><img src="https://ru.kabar.kg/media/images/540085002_24509566465330032_8.max-1920x1080.format-webp.webp" alt="Мероприятие" loading="lazy" class="w-full h-full object-cover transition group-hover:scale-110 duration-700" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+          <div class="text-white text-sm font-semibold">
+           Торжество на площади
+          </div>
+         </div>
+        </div>
+        <div class="relative aspect-square rounded-xl overflow-hidden card-hover group cursor-pointer"><img src="https://elitka.kg/_next/image?url=https%3A%2F%2Felitka.kg%2Fuploads%2F%2Fobject%2F1154%2Fzhk_manas_2.jpg&w=1920&q=75" alt="Архитектура" loading="lazy" class="w-full h-full object-cover transition group-hover:scale-110 duration-700" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+          <div class="text-white text-sm font-semibold">
+           Новые здания
+          </div>
+         </div>
+        </div>
+        <div class="relative aspect-square rounded-xl overflow-hidden card-hover group cursor-pointer"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyas6HKn8MzCrHq3uYSTxw98zpKR-wP1c7cg&s" alt="Спорт" loading="lazy" class="w-full h-full object-cover transition group-hover:scale-110 duration-700" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+          <div class="text-white text-sm font-semibold">
+           Спортивный праздник
+          </div>
+         </div>
+        </div>
+        <div class="relative aspect-square rounded-xl overflow-hidden card-hover group cursor-pointer"><img src="https://storage.ghost.io/c/c3/a6/c3a66635-73fd-4349-a382-8bf5c41013f8/content/images/2026/04/IMG_6011-768x1024-1.jpg" alt="Дороги" loading="lazy" class="w-full h-full object-cover transition group-hover:scale-110 duration-700" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+          <div class="text-white text-sm font-semibold">
+           Реконструкция дорог
+          </div>
+         </div>
+        </div>
+        <div class="relative aspect-square rounded-xl overflow-hidden card-hover group cursor-pointer"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNhfro9jzXnx3NIHgjXhwcopkoRyiuS2r4IQ&s" alt="Встреча" loading="lazy" class="w-full h-full object-cover transition group-hover:scale-110 duration-700" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+          <div class="text-white text-sm font-semibold">
+           Встреча с жителями
+          </div>
+         </div>
+        </div>
+        <div class="relative aspect-square rounded-xl overflow-hidden card-hover group cursor-pointer"><img src="https://triptokyrgyzstan.com/sites/default/files/media/image/c_surash_1.jpg" alt="Пейзаж" loading="lazy" class="w-full h-full object-cover transition group-hover:scale-110 duration-700" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+          <div class="text-white text-sm font-semibold">
+           Горы Манаса
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- DEPARTMENTS -->
+     <div class="max-w-7xl mx-auto px-4 py-20">
+      <div class="text-center mb-14">
+       <div class="text-xs uppercase tracking-[0.25em] font-semibold mb-2" style="color: #1e50a0;">
+        Структура
+       </div>
+       <h2 class="serif text-3xl md:text-4xl font-bold" style="color: #0f285f;">Отделы мэрии</h2>
+       <p class="text-slate-600 mt-3 max-w-2xl mx-auto">Каждый отдел отвечает за свою сферу и обеспечивает эффективную работу городского хозяйства.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+       <div class="p-7 bg-white border border-slate-100 rounded-2xl card-hover">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background-color: #0f285f;">
+         <i data-lucide="building-2" class="w-6 h-6 text-white"></i>
+        </div>
+        <h3 class="serif text-xl font-bold mb-1" style="color: #0f285f;">Отдел архитектуры и градостроительства</h3>
+        <div class="text-sm font-semibold mt-2" style="color: #1e50a0;">
+         Абдыразаков А.К.
+        </div>
+        <p class="text-sm text-slate-600 mt-3 leading-relaxed">Генплан, градостроительные решения, разрешения на строительство, контроль застройки.</p>
+       </div>
+       <div class="p-7 bg-white border border-slate-100 rounded-2xl card-hover">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background-color: #0f285f;">
+         <i data-lucide="coins" class="w-6 h-6 text-white"></i>
+        </div>
+        <h3 class="serif text-xl font-bold mb-1" style="color: #0f285f;">Финансово-экономический отдел</h3>
+        <div class="text-sm font-semibold mt-2" style="color: #1e50a0;">
+         Усенова Г.М.
+        </div>
+        <p class="text-sm text-slate-600 mt-3 leading-relaxed">Формирование бюджета, контроль исполнения, экономическое планирование и отчётность.</p>
+       </div>
+       <div class="p-7 bg-white border border-slate-100 rounded-2xl card-hover">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background-color: #0f285f;">
+         <i data-lucide="graduation-cap" class="w-6 h-6 text-white"></i>
+        </div>
+        <h3 class="serif text-xl font-bold mb-1" style="color: #0f285f;">Отдел образования</h3>
+        <div class="text-sm font-semibold mt-2" style="color: #1e50a0;">
+         Мамбетов К.А.
+        </div>
+        <p class="text-sm text-slate-600 mt-3 leading-relaxed">Школы, детские сады, дополнительное образование, методическое сопровождение.</p>
+       </div>
+       <div class="p-7 bg-white border border-slate-100 rounded-2xl card-hover">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background-color: #0f285f;">
+         <i data-lucide="stethoscope" class="w-6 h-6 text-white"></i>
+        </div>
+        <h3 class="serif text-xl font-bold mb-1" style="color: #0f285f;">Отдел здравоохранения</h3>
+        <div class="text-sm font-semibold mt-2" style="color: #1e50a0;">
+         Токтогулова А.Б.
+        </div>
+        <p class="text-sm text-slate-600 mt-3 leading-relaxed">Медицинское обслуживание, санитарные нормы, профилактика заболеваний, поддержка учреждений.</p>
+       </div>
+       <div class="p-7 bg-white border border-slate-100 rounded-2xl card-hover">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background-color: #0f285f;">
+         <i data-lucide="trees" class="w-6 h-6 text-white"></i>
+        </div>
+        <h3 class="serif text-xl font-bold mb-1" style="color: #0f285f;">Отдел ЖКХ и благоустройства</h3>
+        <div class="text-sm font-semibold mt-2" style="color: #1e50a0;">
+         Асанов Э.Т.
+        </div>
+        <p class="text-sm text-slate-600 mt-3 leading-relaxed">Дороги, освещение, озеленение, уборка, инженерные сети, обслуживание городских территорий.</p>
+       </div>
+       <div class="p-7 bg-white border border-slate-100 rounded-2xl card-hover">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background-color: #0f285f;">
+         <i data-lucide="shield" class="w-6 h-6 text-white"></i>
+        </div>
+        <h3 class="serif text-xl font-bold mb-1" style="color: #0f285f;">Отдел по делам молодёжи</h3>
+        <div class="text-sm font-semibold mt-2" style="color: #1e50a0;">
+         Сыдыкова Н.Ж.
+        </div>
+        <p class="text-sm text-slate-600 mt-3 leading-relaxed">Молодёжные инициативы, гражданско-патриотическое воспитание, спорт, культурные программы.</p>
+       </div>
+      </div>
+     </div>
+    </section><!-- =================== HISTORY SECTION =================== -->
+    <section id="history-section" class="section-hidden fade-in py-16">
+     <div class="max-w-5xl mx-auto px-4">
+      <div class="text-xs uppercase tracking-[0.25em] font-semibold mb-2" style="color: #1e50a0;">
+       О городе
+      </div>
+      <h1 class="serif text-4xl md:text-5xl font-bold mb-8" style="color: #0f285f;">История города Манас</h1>
+      <div class="relative w-full h-80 rounded-2xl overflow-hidden mb-10"><img src="https://images.unsplash.com/photo-1551524559-8af4e6624178?w=1200&amp;q=80" alt="История города" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+      </div>
+      <div class="prose prose-lg max-w-none text-slate-700 leading-relaxed space-y-5">
+       <p>Город Манас — молодой и динамично развивающийся город в Джалал-Абадской области Кыргызской Республики. Основан в 1937 году как административный и сельскохозяйственный центр региона. Своё название город получил в честь великого героя кыргызского народа — Манаса Великодушного, воспетого в одноимённом эпосе.</p>
+       <p>На протяжении десятилетий город развивался вокруг железнодорожной станции и перерабатывающих предприятий. В советский период здесь были построены школы, дом культуры, больница, жилые микрорайоны.</p>
+       <p>После обретения независимости Кыргызстана город получил новый импульс развития: появились частные предприятия, обновилась инфраструктура, преобразились улицы и общественные пространства.</p>
+       <p>Сегодня Манас — это город, где соседствуют традиции и современность. Здесь живут представители разных народов, ценящие дружбу, взаимоуважение и общее будущее. Мэрия прилагает все усилия для того, чтобы сделать город комфортным для каждого жителя.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4 mt-12">
+       <div class="p-6 rounded-xl" style="background-color: #e8eef7;">
+        <div class="serif text-3xl font-bold" style="color: #0f285f;">
+         1937
+        </div>
+        <div class="text-sm text-slate-600 mt-2">
+         Год основания
+        </div>
+       </div>
+       <div class="p-6 rounded-xl" style="background-color: #e8eef7;">
+        <div class="serif text-3xl font-bold" style="color: #0f285f;">
+         88
+        </div>
+        <div class="text-sm text-slate-600 mt-2">
+         Лет истории
+        </div>
+       </div>
+       <div class="p-6 rounded-xl" style="background-color: #e8eef7;">
+        <div class="serif text-3xl font-bold" style="color: #0f285f;">
+         28K+
+        </div>
+        <div class="text-sm text-slate-600 mt-2">
+         Население
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- =================== LEADERSHIP SECTION =================== -->
+    <section id="leadership-section" class="section-hidden fade-in py-16">
+     <div class="max-w-7xl mx-auto px-4">
+      <div class="text-xs uppercase tracking-[0.25em] font-semibold mb-2" style="color: #1e50a0;">
+       Кто управляет городом
+      </div>
+      <h1 class="serif text-4xl md:text-5xl font-bold mb-12" style="color: #0f285f;">Руководство мэрии</h1><!-- Mayor -->
+      <div class="grid md:grid-cols-3 gap-8 mb-16 p-8 rounded-2xl border border-slate-100" style="background-color: #f8faff;">
+       <div class="relative aspect-[4/5] rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&amp;q=80" alt="Мэр" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+       </div>
+       <div class="md:col-span-2">
+        <div class="text-sm uppercase tracking-widest font-semibold mb-2" style="color: #1e50a0;">
+         Мэр города Манас
+        </div>
+        <h2 id="mayor-name-display" class="serif text-4xl font-bold mb-4" style="color: #0f285f;">Бакытбек Усенов Асанович</h2>
+        <p class="text-slate-700 leading-relaxed mb-5">Более 20 лет работает в сфере государственного и муниципального управления. Занимал руководящие должности в областных структурах. На должность мэра избран по итогам открытого конкурса. Основные приоритеты — прозрачность управления, развитие инфраструктуры и поддержка предпринимательства.</p>
+        <div class="flex flex-wrap gap-3"><span class="px-3 py-1.5 bg-white text-xs rounded-full border border-slate-200">Магистр государственного управления</span> <span class="px-3 py-1.5 bg-white text-xs rounded-full border border-slate-200">20+ лет опыта</span> <span class="px-3 py-1.5 bg-white text-xs rounded-full border border-slate-200">Избран в 2023 г.</span>
+        </div>
+       </div>
+      </div>
+      <h2 class="serif text-3xl font-bold mb-8" style="color: #0f285f;">Команда мэра</h2>
+      <div class="grid md:grid-cols-3 gap-6 mb-16">
+       <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden card-hover">
+        <div class="aspect-[4/3] overflow-hidden">
+         <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&amp;q=80" alt="" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+        </div>
+        <div class="p-6">
+         <div class="text-xs font-semibold uppercase tracking-wider" style="color: #1e50a0;">
+          Первый вице-мэр
+         </div>
+         <h3 class="serif text-lg font-bold mt-1" style="color: #0f285f;">Аида Жумабаева</h3>
+         <p class="text-sm text-slate-600 mt-2">Курирует социальную сферу, образование, здравоохранение и культуру.</p>
+        </div>
+       </div>
+       <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden card-hover">
+        <div class="aspect-[4/3] overflow-hidden">
+         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&amp;q=80" alt="" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+        </div>
+        <div class="p-6">
+         <div class="text-xs font-semibold uppercase tracking-wider" style="color: #1e50a0;">
+          Вице-мэр по экономике
+         </div>
+         <h3 class="serif text-lg font-bold mt-1" style="color: #0f285f;">Эркинбек Абдрахманов</h3>
+         <p class="text-sm text-slate-600 mt-2">Бюджет, инвестиции, предпринимательство, налоговая политика.</p>
+        </div>
+       </div>
+       <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden card-hover">
+        <div class="aspect-[4/3] overflow-hidden">
+         <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&amp;q=80" alt="" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+        </div>
+        <div class="p-6">
+         <div class="text-xs font-semibold uppercase tracking-wider" style="color: #1e50a0;">
+          Руководитель аппарата
+         </div>
+         <h3 class="serif text-lg font-bold mt-1" style="color: #0f285f;">Нургуль Турсунова</h3>
+         <p class="text-sm text-slate-600 mt-2">Организация работы мэрии, документооборот, координация отделов.</p>
+        </div>
+       </div>
+      </div><!-- Deputies -->
+      <h2 class="serif text-3xl font-bold mb-8" style="color: #0f285f;">Депутаты городского кенеша</h2>
+      <p class="text-slate-600 mb-8 max-w-3xl">21 депутат представляют интересы жителей в городском кенеше. Они принимают бюджет, утверждают программы развития и контролируют работу мэрии.</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"><!-- generated below -->
+       <div class="p-5 bg-white rounded-xl border border-slate-100 card-hover">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center serif font-bold text-white mb-3" style="background-color: #0f285f;">
+         ТА
+        </div>
+        <div class="font-semibold text-slate-800">
+         Токтосунов А.К.
+        </div>
+        <div class="text-xs text-slate-500 mt-1">
+         Председатель кенеша
+        </div>
+       </div>
+       <div class="p-5 bg-white rounded-xl border border-slate-100 card-hover">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center serif font-bold text-white mb-3" style="background-color: #1e50a0;">
+         ИБ
+        </div>
+        <div class="font-semibold text-slate-800">
+         Исакова Б.Ж.
+        </div>
+        <div class="text-xs text-slate-500 mt-1">
+         Зам. председателя
+        </div>
+       </div>
+       <div class="p-5 bg-white rounded-xl border border-slate-100 card-hover">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center serif font-bold text-white mb-3" style="background-color: #3b7dd8;">
+         КМ
+        </div>
+        <div class="font-semibold text-slate-800">
+         Калыков М.А.
+        </div>
+        <div class="text-xs text-slate-500 mt-1">
+         Комиссия по бюджету
+        </div>
+       </div>
+       <div class="p-5 bg-white rounded-xl border border-slate-100 card-hover">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center serif font-bold text-white mb-3" style="background-color: #0f285f;">
+         СН
+        </div>
+        <div class="font-semibold text-slate-800">
+         Сатыбалдиев Н.
+        </div>
+        <div class="text-xs text-slate-500 mt-1">
+         Соц. политика
+        </div>
+       </div>
+       <div class="p-5 bg-white rounded-xl border border-slate-100 card-hover">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center serif font-bold text-white mb-3" style="background-color: #1e50a0;">
+         ОД
+        </div>
+        <div class="font-semibold text-slate-800">
+         Орозбаева Д.
+        </div>
+        <div class="text-xs text-slate-500 mt-1">
+         Образование
+        </div>
+       </div>
+       <div class="p-5 bg-white rounded-xl border border-slate-100 card-hover">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center serif font-bold text-white mb-3" style="background-color: #3b7dd8;">
+         АК
+        </div>
+        <div class="font-semibold text-slate-800">
+         Акматов К.К.
+        </div>
+        <div class="text-xs text-slate-500 mt-1">
+         ЖКХ
+        </div>
+       </div>
+       <div class="p-5 bg-white rounded-xl border border-slate-100 card-hover">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center serif font-bold text-white mb-3" style="background-color: #0f285f;">
+         МЖ
+        </div>
+        <div class="font-semibold text-slate-800">
+         Молдалиева Ж.
+        </div>
+        <div class="text-xs text-slate-500 mt-1">
+         Культура
+        </div>
+       </div>
+       <div class="p-5 bg-white rounded-xl border border-slate-100 card-hover">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center serif font-bold text-white mb-3" style="background-color: #1e50a0;">
+         ДБ
+        </div>
+        <div class="font-semibold text-slate-800">
+         Дуйшеев Б.А.
+        </div>
+        <div class="text-xs text-slate-500 mt-1">
+         Транспорт
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- =================== PRESS SECTION =================== -->
+    <section id="press-section" class="section-hidden fade-in py-16">
+     <div class="max-w-7xl mx-auto px-4">
+      <div class="text-xs uppercase tracking-[0.25em] font-semibold mb-2" style="color: #1e50a0;">
+       Медиа
+      </div>
+      <h1 class="serif text-4xl md:text-5xl font-bold mb-10" style="color: #0f285f;">Пресс-служба</h1>
+      <div class="grid md:grid-cols-3 gap-8 mb-12">
+       <div class="md:col-span-2">
+        <p class="text-lg text-slate-700 leading-relaxed mb-4">Пресс-служба мэрии обеспечивает информационную открытость работы городской администрации, координирует взаимодействие с журналистами и гражданами, публикует официальные сообщения.</p>
+        <p class="text-slate-600 leading-relaxed">Обращения СМИ принимаются по электронной почте и телефону. Аккредитация журналистов на официальные мероприятия осуществляется на основании заявки.</p>
+       </div>
+       <div class="bg-white rounded-xl border border-slate-100 p-6">
+        <h3 class="serif text-xl font-bold mb-4" style="color: #0f285f;">Контакты для СМИ</h3>
+        <div class="space-y-3 text-sm">
+         <div>
+          <div class="text-slate-500 text-xs">
+           Пресс-секретарь
+          </div>
+          <div class="font-semibold">
+           Айсулуу Карасартова
+          </div>
+         </div>
+         <div>
+          <div class="text-slate-500 text-xs">
+           Телефон
+          </div>
+          <div class="font-semibold">
+           +996 (0) 000-111
+          </div>
+         </div>
+         <div>
+          <div class="text-slate-500 text-xs">
+           Email
+          </div>
+          <div class="font-semibold">
+           press@manas.gov.kg
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <h2 class="serif text-2xl font-bold mb-6" style="color: #0f285f;">Свежие публикации</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+       <article class="card-hover bg-white rounded-2xl overflow-hidden border border-slate-100">
+        <div class="h-48 overflow-hidden">
+         <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&amp;q=80" alt="" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+        </div>
+        <div class="p-6">
+         <div class="text-xs text-slate-400 mb-2">
+          Пресс-релиз · 18 октября
+         </div>
+         <h3 class="serif text-lg font-bold" style="color: #0f285f;">Итоги внеочередной сессии кенеша</h3>
+         <p class="text-sm text-slate-600 mt-2">Утверждены изменения в бюджет на II полугодие.</p>
+        </div>
+       </article>
+       <article class="card-hover bg-white rounded-2xl overflow-hidden border border-slate-100">
+        <div class="h-48 overflow-hidden">
+         <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&amp;q=80" alt="" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+        </div>
+        <div class="p-6">
+         <div class="text-xs text-slate-400 mb-2">
+          Анонс · 17 октября
+         </div>
+         <h3 class="serif text-lg font-bold" style="color: #0f285f;">Приём граждан по личным вопросам</h3>
+         <p class="text-sm text-slate-600 mt-2">Запись на личный приём мэра открыта.</p>
+        </div>
+       </article>
+       <article class="card-hover bg-white rounded-2xl overflow-hidden border border-slate-100">
+        <div class="h-48 overflow-hidden">
+         <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&amp;q=80" alt="" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+        </div>
+        <div class="p-6">
+         <div class="text-xs text-slate-400 mb-2">
+          Брифинг · 12 октября
+         </div>
+         <h3 class="serif text-lg font-bold" style="color: #0f285f;">Планы зимней подготовки города</h3>
+         <p class="text-sm text-slate-600 mt-2">Коммунальные службы отчитались о готовности.</p>
+        </div>
+       </article>
+      </div>
+     </div>
+    </section><!-- =================== STORIES SECTION =================== -->
+    <section id="stories-section" class="section-hidden fade-in py-16">
+     <div class="max-w-6xl mx-auto px-4">
+      <div class="text-xs uppercase tracking-[0.25em] font-semibold mb-2" style="color: #1e50a0;">
+       Люди и события
+      </div>
+      <h1 class="serif text-4xl md:text-5xl font-bold mb-10" style="color: #0f285f;">Городские истории</h1>
+      <div class="space-y-10">
+       <article class="grid md:grid-cols-5 gap-8 items-center">
+        <div class="md:col-span-2 aspect-[4/3] rounded-xl overflow-hidden">
+         <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&amp;q=80" alt="" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+        </div>
+        <div class="md:col-span-3">
+         <div class="text-xs font-semibold uppercase tracking-widest mb-2" style="color: #1e50a0;">
+          Люди города
+         </div>
+         <h2 class="serif text-2xl font-bold mb-3" style="color: #0f285f;">Учительница с 40-летним стажем</h2>
+         <p class="text-slate-700 leading-relaxed">История Гульмиры Асановны — педагога, воспитавшего три поколения манасчан. Её ученики сегодня — врачи, инженеры, учителя в нашем городе.</p>
+        </div>
+       </article>
+       <div class="divider-line"></div>
+       <article class="grid md:grid-cols-5 gap-8 items-center">
+        <div class="md:col-span-3 md:order-1">
+         <div class="text-xs font-semibold uppercase tracking-widest mb-2" style="color: #1e50a0;">
+          Предпринимательство
+         </div>
+         <h2 class="serif text-2xl font-bold mb-3" style="color: #0f285f;">Молодые фермеры меняют село</h2>
+         <p class="text-slate-700 leading-relaxed">Братья Кубатбековы запустили первую в районе сыроварню. За год они создали 12 рабочих мест и вывели местный сыр на рынки Бишкека.</p>
+        </div>
+        <div class="md:col-span-2 md:order-2 aspect-[4/3] rounded-xl overflow-hidden">
+         <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&amp;q=80" alt="" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+        </div>
+       </article>
+       <div class="divider-line"></div>
+       <article class="grid md:grid-cols-5 gap-8 items-center">
+        <div class="md:col-span-2 aspect-[4/3] rounded-xl overflow-hidden">
+         <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&amp;q=80" alt="" loading="lazy" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+        </div>
+        <div class="md:col-span-3">
+         <div class="text-xs font-semibold uppercase tracking-widest mb-2" style="color: #1e50a0;">
+          Спорт
+         </div>
+         <h2 class="serif text-2xl font-bold mb-3" style="color: #0f285f;">Юные борцы — гордость Манаса</h2>
+         <p class="text-slate-700 leading-relaxed">Спортивная школа города подготовила призёров республиканских соревнований. Мэрия поддерживает развитие национальных видов спорта.</p>
+        </div>
+       </article>
+      </div>
+     </div>
+    </section><!-- =================== JOBS SECTION =================== -->
+    <section id="jobs-section" class="section-hidden fade-in py-16">
+     <div class="max-w-6xl mx-auto px-4">
+      <div class="text-xs uppercase tracking-[0.25em] font-semibold mb-2" style="color: #1e50a0;">
+       Карьера
+      </div>
+      <h1 class="serif text-4xl md:text-5xl font-bold mb-4" style="color: #0f285f;">Вакансии</h1>
+      <p class="text-slate-600 mb-10 max-w-2xl">Мэрия города Манас — это возможность служить своему городу, развиваться профессионально и быть частью позитивных изменений.</p>
+      <div class="space-y-4">
+       <div class="p-6 bg-white rounded-2xl border border-slate-100 flex flex-col md:flex-row md:items-center gap-4 card-hover">
+        <div class="flex-1">
+         <div class="flex items-center gap-3 mb-2"><span class="px-3 py-1 text-xs font-semibold rounded-full" style="background-color: #e8eef7; color: #0f285f;">Отдел ЖКХ</span> <span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-50 text-green-700">Открыта</span>
+         </div>
+         <h3 class="serif text-xl font-bold" style="color: #0f285f;">Главный специалист по благоустройству</h3>
+         <p class="text-sm text-slate-600 mt-2">Высшее образование, опыт от 3 лет. Заработная плата 25 000–32 000 сом.</p>
+        </div><button onclick="showToast('Заявка на вакансию отправлена','success')" class="px-5 py-2.5 text-white rounded-full text-sm font-semibold transition hover:opacity-90" style="background-color: #1e50a0;">Откликнуться</button>
+       </div>
+       <div class="p-6 bg-white rounded-2xl border border-slate-100 flex flex-col md:flex-row md:items-center gap-4 card-hover">
+        <div class="flex-1">
+         <div class="flex items-center gap-3 mb-2"><span class="px-3 py-1 text-xs font-semibold rounded-full" style="background-color: #e8eef7; color: #0f285f;">Финансовый отдел</span> <span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-50 text-green-700">Открыта</span>
+         </div>
+         <h3 class="serif text-xl font-bold" style="color: #0f285f;">Ведущий экономист</h3>
+         <p class="text-sm text-slate-600 mt-2">Образование: экономика/финансы. Знание бюджетного процесса КР. От 30 000 сом.</p>
+        </div><button onclick="showToast('Заявка на вакансию отправлена','success')" class="px-5 py-2.5 text-white rounded-full text-sm font-semibold transition hover:opacity-90" style="background-color: #1e50a0;">Откликнуться</button>
+       </div>
+       <div class="p-6 bg-white rounded-2xl border border-slate-100 flex flex-col md:flex-row md:items-center gap-4 card-hover">
+        <div class="flex-1">
+         <div class="flex items-center gap-3 mb-2"><span class="px-3 py-1 text-xs font-semibold rounded-full" style="background-color: #e8eef7; color: #0f285f;">Аппарат мэра</span> <span class="px-3 py-1 text-xs font-semibold rounded-full bg-amber-50 text-amber-700">Конкурс</span>
+         </div>
+         <h3 class="serif text-xl font-bold" style="color: #0f285f;">Юрисконсульт</h3>
+         <p class="text-sm text-slate-600 mt-2">Высшее юридическое образование. Знание муниципального права. Конкурсный отбор.</p>
+        </div><button onclick="showToast('Заявка на вакансию отправлена','success')" class="px-5 py-2.5 text-white rounded-full text-sm font-semibold transition hover:opacity-90" style="background-color: #1e50a0;">Откликнуться</button>
+       </div>
+       <div class="p-6 bg-white rounded-2xl border border-slate-100 flex flex-col md:flex-row md:items-center gap-4 card-hover">
+        <div class="flex-1">
+         <div class="flex items-center gap-3 mb-2"><span class="px-3 py-1 text-xs font-semibold rounded-full" style="background-color: #e8eef7; color: #0f285f;">Пресс-служба</span> <span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-50 text-green-700">Открыта</span>
+         </div>
+         <h3 class="serif text-xl font-bold" style="color: #0f285f;">SMM-специалист</h3>
+         <p class="text-sm text-slate-600 mt-2">Ведение соц. сетей мэрии, контент-план, работа с аудиторией. От 22 000 сом.</p>
+        </div><button onclick="showToast('Заявка на вакансию отправлена','success')" class="px-5 py-2.5 text-white rounded-full text-sm font-semibold transition hover:opacity-90" style="background-color: #1e50a0;">Откликнуться</button>
+       </div>
+      </div>
+     </div>
+    </section><!-- =================== CONTACTS SECTION =================== -->
+    <section id="contacts-section" class="section-hidden fade-in py-16">
+     <div class="max-w-6xl mx-auto px-4">
+      <div class="text-xs uppercase tracking-[0.25em] font-semibold mb-2" style="color: #1e50a0;">
+       Связаться с нами
+      </div>
+      <h1 class="serif text-4xl md:text-5xl font-bold mb-10" style="color: #0f285f;">Контакты</h1>
+      <div class="grid md:grid-cols-3 gap-6 mb-10">
+       <div class="p-7 bg-white rounded-2xl border border-slate-100">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background-color: #e8eef7;">
+         <i data-lucide="map-pin" class="w-6 h-6" style="color: #0f285f;"></i>
+        </div>
+        <h3 class="serif text-lg font-bold mb-2" style="color: #0f285f;">Адрес</h3>
+        <p class="text-sm text-slate-600">Кыргызская Республика, Джалал-Абадская обл., г. Манас, Ю. Абдрахманова, 6</p>
+       </div>
+       <div class="p-7 bg-white rounded-2xl border border-slate-100">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background-color: #e8eef7;">
+         <i data-lucide="phone" class="w-6 h-6" style="color: #0f285f;"></i>
+        </div>
+        <h3 class="serif text-lg font-bold mb-2" style="color: #0f285f;">Телефон</h3>
+        <p class="text-sm text-slate-600">Приёмная: +996 (0) 000-000<br>
+         Горячая линия: +996 (0) 000-999</p>
+       </div>
+       <div class="p-7 bg-white rounded-2xl border border-slate-100">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background-color: #e8eef7;">
+         <i data-lucide="mail" class="w-6 h-6" style="color: #0f285f;"></i>
+        </div>
+        <h3 class="serif text-lg font-bold mb-2" style="color: #0f285f;">Email</h3>
+        <p class="text-sm text-slate-600">Общий: info@manas.gov.kg<br>
+         СМИ: press@manas.gov.kg</p>
+       </div>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-100">
+       <h2 class="serif text-2xl font-bold mb-4" style="color: #0f285f;">Часы работы</h2>
+       <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div class="flex justify-between p-3 rounded-lg bg-slate-50">
+         <span class="text-slate-600">Понедельник — Пятница</span><span class="font-semibold">08:30 — 17:30</span>
+        </div>
+        <div class="flex justify-between p-3 rounded-lg bg-slate-50">
+         <span class="text-slate-600">Перерыв</span><span class="font-semibold">12:30 — 13:30</span>
+        </div>
+        <div class="flex justify-between p-3 rounded-lg bg-slate-50">
+         <span class="text-slate-600">Суббота</span><span class="font-semibold">Приём по записи</span>
+        </div>
+        <div class="flex justify-between p-3 rounded-lg bg-slate-50">
+         <span class="text-slate-600">Воскресенье</span><span class="font-semibold text-red-500">Выходной</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- =================== APPEAL SECTION =================== -->
+    <section id="appeal-section" class="section-hidden fade-in py-16">
+     <div class="max-w-4xl mx-auto px-4">
+      <div class="text-xs uppercase tracking-[0.25em] font-semibold mb-2" style="color: #1e50a0;">
+       Прямая связь
+      </div>
+      <h1 class="serif text-4xl md:text-5xl font-bold mb-4" style="color: #0f285f;">Обращение к мэру</h1>
+      <p class="text-slate-600 mb-10">Ваше обращение будет рассмотрено в установленные законом сроки. Все поля обязательны для заполнения.</p>
+      <form id="appeal-form" class="bg-white p-8 rounded-2xl border border-slate-100 space-y-5">
+       <div><label for="appeal-name" class="block text-sm font-semibold text-slate-700 mb-2">ФИО *</label> <input id="appeal-name" type="text" required class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition" placeholder="Например: Асанов Асан Асанович">
+       </div>
+       <div class="grid md:grid-cols-2 gap-5">
+        <div><label for="appeal-email" class="block text-sm font-semibold text-slate-700 mb-2">Email *</label> <input id="appeal-email" type="email" required class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition" placeholder="name@example.com">
+        </div>
+        <div><label for="appeal-phone" class="block text-sm font-semibold text-slate-700 mb-2">Телефон *</label> <input id="appeal-phone" type="tel" required class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition" placeholder="+996 (___) ___-___">
+        </div>
+       </div>
+       <div><label for="appeal-subject" class="block text-sm font-semibold text-slate-700 mb-2">Тема обращения *</label> <input id="appeal-subject" type="text" required class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition" placeholder="Кратко опишите суть">
+       </div>
+       <div><label for="appeal-message" class="block text-sm font-semibold text-slate-700 mb-2">Сообщение *</label> <textarea id="appeal-message" required rows="5" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition resize-none" placeholder="Подробно изложите ваше обращение"></textarea>
+       </div>
+       <div class="flex items-center gap-3 pt-2"><button type="submit" id="appeal-submit" class="px-8 py-3 text-white rounded-full font-semibold transition hover:opacity-90 flex items-center gap-2" style="background-color: #1e50a0;"> <span id="submit-text">Отправить обращение</span> <span id="submit-loader" class="hidden"><i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i></span> </button> <span class="text-xs text-slate-500">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</span>
+       </div>
+      </form>
+      <div id="appeals-history" class="mt-10">
+       <h2 class="serif text-2xl font-bold mb-5" style="color: #0f285f;">Мои обращения</h2>
+       <div id="appeals-list" class="space-y-3">
+        <div class="text-sm text-slate-500 text-center p-8 bg-slate-50 rounded-xl" id="no-appeals">
+         Пока нет обращений. Отправьте первое — оно появится здесь.
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+   </main><!-- FOOTER -->
+   <footer class="text-white mt-10" style="background-color: #0f285f;">
+    <div class="max-w-7xl mx-auto px-4 py-14">
+     <div class="grid md:grid-cols-4 gap-10">
+      <div class="md:col-span-1">
+       <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-white overflow-hidden"><img src="manasmerrr.jpeg" alt="Герб" style="background-color: #0f285f;" loading="lazy" onerror="this.style.display='none';">
+        </div>
+        <div>
+         <div class="serif font-bold text-lg">
+          Мэрия г. Манас
+         </div>
+         <div class="text-xs text-blue-200">
+          Официальный портал
+         </div>
+        </div>
+       </div>
+       <p id="footer-text" class="text-sm text-blue-100 leading-relaxed">Работаем для каждого жителя города. Открытость, эффективность, забота — наши главные принципы.</p>
+      </div>
+      <div>
+       <h4 class="font-semibold uppercase text-xs tracking-widest mb-4 text-blue-200">Разделы</h4>
+       <ul class="space-y-2 text-sm">
+        <li><a href="#history" data-nav="history" class="hover:text-blue-200 transition">История города</a></li>
+        <li><a href="#leadership" data-nav="leadership" class="hover:text-blue-200 transition">Руководство</a></li>
+        <li><a href="#press" data-nav="press" class="hover:text-blue-200 transition">Пресс-служба</a></li>
+        <li><a href="#stories" data-nav="stories" class="hover:text-blue-200 transition">Городские истории</a></li>
+        <li><a href="#jobs" data-nav="jobs" class="hover:text-blue-200 transition">Вакансии</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-semibold uppercase text-xs tracking-widest mb-4 text-blue-200">Контакты</h4>
+       <ul class="space-y-3 text-sm text-blue-100">
+        <li class="flex items-start gap-2"><i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0"></i> г. Манас, ул. Ленина, 15</li>
+        <li class="flex items-start gap-2"><i data-lucide="phone" class="w-4 h-4 mt-0.5 shrink-0"></i> +996 (777) 05 05 07</li>
+        <li class="flex items-start gap-2"><i data-lucide="mail" class="w-4 h-4 mt-0.5 shrink-0"></i> info@manas.gov.kg</li>
+        <li class="flex items-start gap-2"><i data-lucide="clock" class="w-4 h-4 mt-0.5 shrink-0"></i> Пн-Пт: 08:30–17:30</li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-semibold uppercase text-xs tracking-widest mb-4 text-blue-200">Мы в социальных сетях</h4>
+       <div class="flex gap-3"><a href="#" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-white/10 hover:bg-white hover:text-[#0f285f] flex items-center justify-center transition" aria-label="Facebook"><i data-lucide="facebook" class="w-5 h-5"></i></a> <a href="https://www.instagram.com/manas_meriya?igsh=NXhkdXVxMjRmZWZy" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-white/10 hover:bg-white hover:text-[#0f285f] flex items-center justify-center transition" aria-label="Instagram"><i data-lucide="instagram" class="w-5 h-5"></i></a> <a href="#" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-white/10 hover:bg-white hover:text-[#0f285f] flex items-center justify-center transition" aria-label="YouTube"><i data-lucide="youtube" class="w-5 h-5"></i></a> <a href="#" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-white/10 hover:bg-white hover:text-[#0f285f] flex items-center justify-center transition" aria-label="Telegram"><i data-lucide="send" class="w-5 h-5"></i></a>
+       </div>
+       <div class="mt-6 text-xs text-blue-200">
+        Подпишитесь, чтобы первыми узнавать новости города.
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="border-t border-white/10">
+     <div class="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-blue-200">
+      <div>
+       © 2026 Мэрия города Манас. Все права защищены.
+      </div>
+      <div>
+       Официальный портал · Версия для слабовидящих по запросу
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div><!-- TOAST -->
+  <div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-2"></div>
+  <script>
+  lucide.createIcons();
+
+  // ============ Element SDK ============
+  const defaultConfig = {
+    city_name: 'Мэрия г. Манас',
+    hero_title: 'Манас — город с древней историей и современным будущим',
+    hero_subtitle: 'Мэрия работает для каждого жителя: открытость, развитие, забота о городе.',
+    mayor_name: 'Бакытбек Усенов Асанович',
+    footer_text: 'Работаем для каждого жителя города. Открытость, эффективность, забота — наши главные принципы.',
+    primary_bg: '#ffffff',
+    primary_dark: '#0f285f',
+    primary_blue: '#1e50a0',
+    text_color: '#1e293b',
+    accent_light: '#e8eef7'
+  };
+
+  async function onConfigChange(config) {
+    const cityName = config.city_name || defaultConfig.city_name;
+    const heroTitle = config.hero_title || defaultConfig.hero_title;
+    const heroSubtitle = config.hero_subtitle || defaultConfig.hero_subtitle;
+    const mayorName = config.mayor_name || defaultConfig.mayor_name;
+    const footerText = config.footer_text || defaultConfig.footer_text;
+
+    const headerCity = document.getElementById('header-city-name');
+    if (headerCity) headerCity.textContent = cityName;
+    const hTitle = document.getElementById('hero-title');
+    if (hTitle) hTitle.textContent = heroTitle;
+    const hSub = document.getElementById('hero-subtitle');
+    if (hSub) hSub.textContent = heroSubtitle;
+    const mName = document.getElementById('mayor-name-display');
+    if (mName) mName.textContent = mayorName;
+    const fText = document.getElementById('footer-text');
+    if (fText) fText.textContent = footerText;
+  }
+
+  if (window.elementSdk) {
+    window.elementSdk.init({
+      defaultConfig,
+      onConfigChange,
+      mapToCapabilities: (config) => ({
+        recolorables: [
+          { get: () => config.primary_bg || defaultConfig.primary_bg, set: (v) => { config.primary_bg = v; window.elementSdk.setConfig({ primary_bg: v }); } },
+          { get: () => config.accent_light || defaultConfig.accent_light, set: (v) => { config.accent_light = v; window.elementSdk.setConfig({ accent_light: v }); } },
+          { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+          { get: () => config.primary_dark || defaultConfig.primary_dark, set: (v) => { config.primary_dark = v; window.elementSdk.setConfig({ primary_dark: v }); } },
+          { get: () => config.primary_blue || defaultConfig.primary_blue, set: (v) => { config.primary_blue = v; window.elementSdk.setConfig({ primary_blue: v }); } }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      }),
+      mapToEditPanelValues: (config) => new Map([
+        ['city_name', config.city_name || defaultConfig.city_name],
+        ['hero_title', config.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+        ['mayor_name', config.mayor_name || defaultConfig.mayor_name],
+        ['footer_text', config.footer_text || defaultConfig.footer_text]
+      ])
+    });
+  }
+
+  // ============ Navigation ============
+  const sections = ['home','history','leadership','press','stories','jobs','contacts','appeal'];
+  function showSection(name) {
+    sections.forEach(s => {
+      const el = document.getElementById(s + '-section');
+      if (el) el.classList.add('section-hidden');
+    });
+    const target = document.getElementById(name + '-section');
+    if (target) {
+      target.classList.remove('section-hidden');
+      target.classList.remove('fade-in');
+      void target.offsetWidth;
+      target.classList.add('fade-in');
+    }
+    document.querySelectorAll('.nav-link').forEach(l => {
+      l.classList.toggle('active', l.getAttribute('data-section') === name);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('mobile-menu').classList.add('hidden');
+  }
+
+  document.querySelectorAll('[data-section]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSection(link.getAttribute('data-section'));
+    });
+  });
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSection(link.getAttribute('data-section'));
+    });
+  });
+  document.querySelectorAll('[data-nav]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSection(el.getAttribute('data-nav'));
+    });
+  });
+
+  document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+    if (!menu.classList.contains('hidden')) menu.classList.add('mobile-menu-enter');
+  });
+
+  // ============ Toast ============
+  function showToast(message, type = 'info') {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    const colors = {
+      success: { bg: '#0f285f', icon: 'check-circle' },
+      error: { bg: '#b91c1c', icon: 'alert-circle' },
+      info: { bg: '#1e50a0', icon: 'info' }
+    };
+    const c = colors[type] || colors.info;
+    toast.className = 'toast-enter flex items-center gap-3 px-5 py-3 rounded-xl text-white shadow-xl max-w-sm';
+    toast.style.backgroundColor = c.bg;
+    toast.innerHTML = `<i data-lucide="${c.icon}" class="w-5 h-5 shrink-0"></i><span class="text-sm font-medium">${message}</span>`;
+    container.appendChild(toast);
+    lucide.createIcons();
+    setTimeout(() => {
+      toast.style.transition = 'opacity 0.3s, transform 0.3s';
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(-10px)';
+      setTimeout(() => toast.remove(), 300);
+    }, 3200);
+  }
+
+  // ============ Data SDK — Appeals ============
+  let currentAppeals = [];
+
+  const dataHandler = {
+    onDataChanged(data) {
+      currentAppeals = data || [];
+      const list = document.getElementById('appeals-list');
+      const noMsg = document.getElementById('no-appeals');
+      if (!list) return;
+
+      if (currentAppeals.length === 0) {
+        if (noMsg) noMsg.style.display = 'block';
+        [...list.children].forEach(c => { if (c.id !== 'no-appeals') c.remove(); });
+        return;
+      }
+      if (noMsg) noMsg.style.display = 'none';
+
+      const existing = new Map([...list.children].filter(c => c.dataset.id).map(c => [c.dataset.id, c]));
+      const sorted = [...currentAppeals].sort((a,b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+
+      sorted.forEach(item => {
+        const id = item.__backendId;
+        let el = existing.get(id);
+        if (!el) {
+          el = document.createElement('div');
+          el.className = 'p-5 bg-white rounded-xl border border-slate-100';
+          el.dataset.id = id;
+          list.appendChild(el);
+        } else {
+          existing.delete(id);
+        }
+        const date = item.createdAt ? new Date(item.createdAt).toLocaleString('ru-RU') : '';
+        el.innerHTML = `
+          <div class="flex items-start justify-between gap-3 mb-2">
+            <div class="font-semibold" style="color: #0f285f;">${escapeHtml(item.subject || 'Без темы')}</div>
+            <span class="px-2 py-0.5 text-xs rounded-full bg-amber-50 text-amber-700 shrink-0">На рассмотрении</span>
+          </div>
+          <div class="text-xs text-slate-400 mb-2">${escapeHtml(item.fullName || '')} · ${date}</div>
+          <div class="text-sm text-slate-600 line-clamp-2">${escapeHtml(item.message || '')}</div>
+        `;
+      });
+
+      existing.forEach(el => el.remove());
+    }
+  };
+
+  function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  (async () => {
+    if (window.dataSdk) {
+      const res = await window.dataSdk.init(dataHandler);
+      if (!res.isOk) {
+        console.warn('Data SDK init failed');
+      }
+    }
+  })();
+
+  // Form submit
+  document.getElementById('appeal-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('appeal-submit');
+    const submitText = document.getElementById('submit-text');
+    const loader = document.getElementById('submit-loader');
+
+    if (currentAppeals.length >= 999) {
+      showToast('Достигнут лимит обращений (999). Удалите старые записи.', 'error');
+      return;
+    }
+
+    const payload = {
+      fullName: document.getElementById('appeal-name').value.trim(),
+      email: document.getElementById('appeal-email').value.trim(),
+      phone: document.getElementById('appeal-phone').value.trim(),
+      subject: document.getElementById('appeal-subject').value.trim(),
+      message: document.getElementById('appeal-message').value.trim(),
+      createdAt: new Date().toISOString()
+    };
+
+    btn.disabled = true;
+    submitText.textContent = 'Отправка...';
+    loader.classList.remove('hidden');
+    lucide.createIcons();
+
+    try {
+      if (!window.dataSdk) throw new Error('SDK не готов');
+      const result = await window.dataSdk.create(payload);
+      if (result.isOk) {
+        showToast('Обращение успешно отправлено', 'success');
+        e.target.reset();
+      } else {
+        showToast('Не удалось отправить. Попробуйте позже.', 'error');
+      }
+    } catch (err) {
+      showToast('Ошибка отправки. Проверьте соединение.', 'error');
+    } finally {
+      btn.disabled = false;
+      submitText.textContent = 'Отправить обращение';
+      loader.classList.add('hidden');
+    }
+  });
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f0a739fc310b5f7',t:'MTc3NjkyMTk2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
